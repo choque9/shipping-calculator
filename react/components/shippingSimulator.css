@@ -1,0 +1,74 @@
+.shippingContainerLoader {}
+
+.shippingCTA {}
+
+.shippingInputLoader {}
+
+.shippingNoMessage {}
+
+.shippingTable {}
+
+.shippingTableBody {}
+
+.shippingTableCell {}
+
+.shippingTableCellDeliveryEstimate {}
+
+.shippingTableCellDeliveryName {}
+
+.shippingTableCellDeliveryPrice {}
+
+.shippingTableHead .shippingTableHead {
+  /* Use the following CSS rule to display correctly */
+  /* display: table-header-group */
+}
+
+.shippingTableHeadDeliveryEstimate {}
+
+.shippingTableHeadDeliveryName {}
+
+.shippingTableHeadDeliveryPrice {}
+
+.shippingTableLabel {}
+
+.shippingTableRadioBtn {}
+
+.shippingTableRow {}
+
+.shippingZipcodeLabel {}
+
+.shippingZipcodeLabelLoader {}
+
+.shippingContainer {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.shippingHeaderContainer {
+  padding: 8px 8px 8px 40px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.link {
+  margin-top: 16px;
+  color: #4CAF50;
+  text-decoration: none;
+}

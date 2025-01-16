@@ -1,9 +1,10 @@
 import React from 'react'
+import ShippingSimulator from './components/ShippingSimulator'
 
-interface ShippingProps {}
+interface ShippingProps { }
 
-const Shipping: StorefrontFunctionComponent<ShippingProps> = ({}) => {
-  return <div>test</div>
+const Shipping: StorefrontFunctionComponent<ShippingProps> = ({ }) => {
+  return <div><ShippingSimulator></ShippingSimulator></div>
 }
 
 Shipping.schema = {

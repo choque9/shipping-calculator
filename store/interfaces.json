@@ -1,4 +1,7 @@
 {
+  "shipping-header": {
+    "component": "ShippingHeader"
+  },
   "shipping": {
     "component": "Shipping"
   }

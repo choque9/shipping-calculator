@@ -1,0 +1,42 @@
+.shippingContainerCost {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    max-width: 500px;
+    margin: 0 auto;
+    overflow-y: auto;
+    max-height: 350px;
+}
+
+.shippingHeader {
+    padding: 16px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+.table th{
+    font-weight: bold;
+}
+.table th,
+.table td {
+    border-bottom: 1px solid #ddd;
+    padding: 8px 8px 8px 0;
+    text-align: left;
+}
+
+.shippingOptionTitle {
+    color: green;
+    font-weight: bold;
+    font-size: 9px;
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background: green;
+    margin: 24px 0;
+}
