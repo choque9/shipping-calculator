@@ -23,6 +23,7 @@ const ShippingSimulator = ({
   const seller = getDefaultSeller(productContext.selectedItem?.sellers)
   const skuId = productContext.selectedItem?.itemId
   const quantity = productContext?.selectedQuantity?.toString()
+  const [error, setError] = useState('');
 
   const handleInputChange = (event: any) => {
     if (/^\d*$/.test(event.target.value)) {
@@ -32,7 +33,9 @@ const ShippingSimulator = ({
 
   const handleKeyPress = (event: any) => {
     if (event.key === 'Enter') {
-      onCalculateShipping(event)
+      if (postalCode.length > 0) {
+        onCalculateShipping(event)
+      }
     }
   };
 
@@ -60,14 +63,16 @@ const ShippingSimulator = ({
         })
         .then(result => {
           const logisticsInfo = result.data.shipping.logisticsInfo
-          if (logisticsInfo) {
+          if (logisticsInfo && logisticsInfo.slas > 0) {
             setShipping(logisticsInfo)
           } else {
             setShipping(null)
+            setError("No se encontró información para el código postal")
           }
         })
         .catch(error => {
           console.error(error)
+          setError("Formato de código postal incorrecto")
         })
         .finally(() => {
           setLoading(false)
@@ -76,6 +81,7 @@ const ShippingSimulator = ({
     [client, country, quantity, skuId, seller.sellerId, postalCode]
   )
 
+  console.log("Hola shipping", shipping)
   return (
     <Fragment>
       <div className={`${styles.shippingContainer} t-small c-on-base`}>
@@ -86,7 +92,7 @@ const ShippingSimulator = ({
             <ShippingCostTable shipping={shipping} shippingType='PICKUP' />
           </div> :
           <div >
-            <label className={styles.label}>Ingresa el código postal</label>
+            <label className={styles.label}>{intl.formatMessage({ id: 'editor.shipping.input-postal-code' })}</label>
             <div className={`${styles.shippingInput}`}>
               <input
                 type="text"
@@ -106,8 +112,9 @@ const ShippingSimulator = ({
                 isLoading={loading}
               > {intl.formatMessage({ id: 'store/shipping.label' })}</Button>
             </div>
+            {error && <span className={styles.error}>{error}</span>}
             <div className={styles.linkContainer}>
-              <a className={styles.link} href="#" >No sé mi código postal</a>
+              <a className={styles.link} href="#" >{intl.formatMessage({ id: 'editor.shipping.postal-code-unknown' })} </a>
             </div>
           </div>
         }
