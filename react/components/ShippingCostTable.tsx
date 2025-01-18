@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import TranslateEstimate from 'vtex.shipping-estimate-translator/TranslateEstimate'
 import styles from './ShippingCostTable.css'
+import { useIntl } from 'react-intl'
 
 interface ShippingOption {
   itemIndex: string;
@@ -21,8 +22,11 @@ interface ShippingCostProps {
 }
 
 const ShippingCostTable: React.FC<ShippingCostProps> = ({ shipping, shippingType }) => {
+
+  const intl = useIntl()
+
   if ((shipping?.length ?? 0) === 0 || shipping === null) {
-    return <div> No hay información de envío </div>
+    return <div> {intl.formatMessage({ id: 'editor.shipping.table.not-found' })}</div>
   }
 
   return (
@@ -33,14 +37,14 @@ const ShippingCostTable: React.FC<ShippingCostProps> = ({ shipping, shippingType
           <table className={`${styles.table}`}>
             <thead>
               <tr>
-                <th>TIPO DE ENVÍO</th>
-                <th>TIEMPO ESTIMADO</th>
-                <th>COSTO</th>
+                <th>{intl.formatMessage({ id: 'editor.shipping.table.type' })}</th>
+                <th>{intl.formatMessage({ id: 'editor.shipping.table.estimated-time' })} </th>
+                <th>{intl.formatMessage({ id: 'editor.shipping.table.cost' })} </th>
               </tr>
             </thead>
             <tbody>
               <div className={styles.shippingOptionTitle}>
-                <h2>{ shippingType ===  "PICKUP" ? "Punto de retiro" : "Envío a domicilio "}</h2>
+                <h2>{shippingType === "PICKUP" ? intl.formatMessage({ id: 'editor.shipping.table.pickup' }) :  intl.formatMessage({ id: 'editor.shipping.table.shipping' }) }</h2>
               </div>
               {shipping?.map((option, index) => (
                 <Fragment key={index}>

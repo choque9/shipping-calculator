@@ -1,4 +1,12 @@
 {
-  "editor.shipping.title": "Cuenta regresiva",
-  "editor.shipping.description": "Cuenta regresiva component"
+  "editor.shipping.title": "Costo de envío",
+  "editor.shipping.postal-code-unknown": "No sé mi código postal",
+  "editor.shipping.description": "Componente costo de envío",
+  "editor.shipping.table.not-found": "No hay información de envío",
+  "editor.shipping.input-postal-code": "Ingresa el código postal",
+  "editor.shipping.table.type": "TIPO DE ENVÍO",
+  "editor.shipping.table.estimated-time": "TIEMPO ESTIMADO",
+  "editor.shipping.table.cost": "COSTO",
+  "editor.shipping.table.pickup": "Punto de retiro",
+  "editor.shipping.table.shipping": "Envío a domicilio"
 }

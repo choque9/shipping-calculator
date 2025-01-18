@@ -1,4 +1,12 @@
 {
   "editor.shipping.title": "Contagem regressiva",
-  "editor.shipping.description": "Componente de contagem regressiva"
+  "editor.shipping.postal-code-unknown": "I don't know my postal code",
+  "editor.shipping.description": "Componente de contagem regressiva",
+  "editor.shipping.table.not-found": "No hay información de envío",
+  "editor.shipping.input-postal-code": "Ingresa el código postal",
+  "editor.shipping.table.type": "TIPO DE ENVÍO",
+  "editor.shipping.table.estimated-time": "TIEMPO ESTIMADO",
+  "editor.shipping.table.cost": "COSTO",
+  "editor.shipping.table.pickup": "Punto de retiro",
+  "editor.shipping.table.shipping": "Envío a domicilio"
 }
