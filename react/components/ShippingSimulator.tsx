@@ -63,7 +63,8 @@ const ShippingSimulator = ({
         })
         .then(result => {
           const logisticsInfo = result.data.shipping.logisticsInfo
-          if (logisticsInfo && logisticsInfo.slas > 0) {
+          console.log("hola logisticsInfo called ", logisticsInfo)
+          if (logisticsInfo && logisticsInfo.length > 0 && logisticsInfo[0].slas.length > 0) {
             setShipping(logisticsInfo)
           } else {
             setShipping(null)
