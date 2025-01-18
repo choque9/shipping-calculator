@@ -1,7 +1,7 @@
 import React, { Fragment, useCallback, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { Button } from 'vtex.styleguide'
-import styles from './shippingSimulator.css' // Importa el archivo CSS
+import styles from './shippingSimulator.css'
 import { useApolloClient } from 'react-apollo'
 import getShippingEstimates from '../../graphql/queries/getShippingEstimates.gql'
 import { useProduct } from 'vtex.product-context'
@@ -13,7 +13,7 @@ const ShippingSimulator = ({
 }) => {
   const { culture } = useRuntime()
   const intl = useIntl()
-  const [postalCode] = useState<string>('');
+  const [postalCode, setPostalCode] = useState('');
   const productContext = useProduct()
   const [shipping, setShipping] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -24,20 +24,31 @@ const ShippingSimulator = ({
   const skuId = productContext.selectedItem?.itemId
   const quantity = productContext?.selectedQuantity?.toString()
 
+  const handleInputChange = (event: any) => {
+    if (/^\d*$/.test(event.target.value)) {
+      setPostalCode(event.target.value);
+    }
+  };
 
-  // TODO: Implementar la función handleInputChange
+  const handleKeyPress = (event: any) => {
+    if (event.key === 'Enter') {
+      onCalculateShipping(event)
+    }
+  };
+
   // TODO obtener la query correcta de getShippingEstimates. Dividir shipping cost and pick up points list
 
   const onCalculateShipping = useCallback(
     e => {
       e && e.preventDefault()
       setLoading(true)
+
       client
         .query({
           query: getShippingEstimates,
           variables: {
             country: country,
-            postalCode: "6600",
+            postalCode: postalCode,
             items: [
               {
                 quantity: quantity,
@@ -62,9 +73,8 @@ const ShippingSimulator = ({
           setLoading(false)
         })
     },
-    [client, country, quantity, skuId, seller.sellerId]
+    [client, country, quantity, skuId, seller.sellerId, postalCode]
   )
-
 
   return (
     <Fragment>
@@ -82,9 +92,10 @@ const ShippingSimulator = ({
                 type="text"
                 id="postalCode"
                 value={postalCode}
-                // onChange={handleInputChange}
+                onChange={handleInputChange}
                 placeholder="Código Postal"
                 className={styles.input}
+                onKeyPress={handleKeyPress}
               />
               <Button
                 onClick={onCalculateShipping}
