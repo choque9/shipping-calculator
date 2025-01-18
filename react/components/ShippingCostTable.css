@@ -1,8 +1,5 @@
 .shippingContainerCost {
-    border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 16px;
-    max-width: 500px;
     margin: 0 auto;
     overflow-y: auto;
     max-height: 350px;
@@ -18,9 +15,14 @@
 }
 
 
-.table th{
+.table th {
+    font-weight: 500;
+}
+
+.tableFriendlyName {
     font-weight: bold;
 }
+
 .table th,
 .table td {
     border-bottom: 1px solid #ddd;
@@ -34,9 +36,3 @@
     font-size: 9px;
 }
 
-.divider {
-    border: 0;
-    height: 1px;
-    background: green;
-    margin: 24px 0;
-}

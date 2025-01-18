@@ -19,8 +19,6 @@
 .shippingTableCellDeliveryPrice {}
 
 .shippingTableHead .shippingTableHead {
-  /* Use the following CSS rule to display correctly */
-  /* display: table-header-group */
 }
 
 .shippingTableHeadDeliveryEstimate {}
@@ -39,12 +37,29 @@
 
 .shippingZipcodeLabelLoader {}
 
+.shippingHeaderTitle {}
+
+.shippingSubContainer {}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background: green;
+  margin: 24px 0;
+}
+
+.linkContainer {
+  margin-top: 16px;
+  margin-top: 16px;
+}
+
 .shippingContainer {
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 16px;
-  max-width: 500px;
   margin: 0 auto;
+  overflow-y: auto;
+  max-height: 350px;
 }
 
 .shippingHeaderContainer {
@@ -69,6 +84,28 @@
 
 .link {
   margin-top: 16px;
-  color: #4CAF50;
+  margin-top: 16px;
   text-decoration: none;
+}
+
+.shippingInput{
+  display: flex;
+}
+
+.shippingInput button{
+  position: absolute;
+  right: 18px;
+  width: fit-content;
+  background-color: transparent;
+  color: green;
+  border-color: transparent;
+  margin-top: 1px;
+  font-size: 13px;
+}
+
+.shippingInput button:hover{
+  background-color: #ebf7ea;
+  color: green;
+  border-color: transparent;
+  border-radius: 50px;
 }
