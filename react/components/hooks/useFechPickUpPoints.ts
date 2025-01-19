@@ -2,19 +2,15 @@ import { useState, useCallback } from 'react'
 import { useRuntime } from 'vtex.render-runtime'
 
 import { getPickups } from '../../client'
-
-interface ShippingOption {
-  name: string
-  estimated: string
-  cost: string
-}
+import { PickUpOption } from '../../typings/global'
 
 export const useFetchPickups = (postalCode: string) => {
   const { culture } = useRuntime()
   const [loading, setLoading] = useState(false)
-  const [pickups, setPickups] = useState<ShippingOption[]>([])
+  const [pickups, setPickups] = useState<PickUpOption[]>([])
 
   const fetchPickups = useCallback(async () => {
+    if (postalCode.length === 0) return
     setLoading(true)
 
     try {
@@ -24,21 +20,20 @@ export const useFetchPickups = (postalCode: string) => {
         'piercecommercepartnerar' // TODO: get from cookies
       )
 
-      const shippingOptions: ShippingOption[] = responsePickups.items.map(
+      const pickUpOptionFormated: PickUpOption[] = responsePickups.items.map(
         (item: any) => ({
           name: item.pickupPoint.friendlyName,
-          estimated: item.distance.toFixed(2).toString(),
-          cost: '0',
+          postalCode: item?.pickupPoint?.address?.postalCode,
         })
       )
 
-      setPickups(shippingOptions)
+      setPickups(pickUpOptionFormated)
     } catch (error) {
       console.error(error)
     } finally {
       setLoading(false)
     }
-  }, [postalCode])
+  }, [postalCode, pickups])
 
   return { loading, pickups, fetchPickups }
 }

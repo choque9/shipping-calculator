@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { Button } from 'vtex.styleguide'
 
@@ -6,14 +6,19 @@ import styles from './shippingSimulator.css'
 import ShippingCostTable from './ShippingCostTable'
 import { useFetchPickups } from './hooks/useFechPickUpPoints'
 import { useCalculateShipping } from './hooks/useCalculateShipping'
+import { useFetchShippingFromPickups } from './hooks/useFetchShippingFromPickups'
 
 const ShippingSimulator = () => {
   const intl = useIntl()
   const [postalCode, setPostalCode] = useState('')
-  const { pickups, fetchPickups } = useFetchPickups(postalCode)
   const { loading, shipping, error, calculateShipping } = useCalculateShipping(
     postalCode
   )
+  const { pickups, fetchPickups } = useFetchPickups(postalCode)
+  const {
+    shippingFromPickups,
+    shippingFromPickupCall,
+  } = useFetchShippingFromPickups()
 
   const handleInputChange = (event: any) => {
     if (/^\d*$/.test(event.target.value)) {
@@ -25,7 +30,6 @@ const ShippingSimulator = () => {
     if (event.key === 'Enter') {
       if (postalCode.length > 0) {
         calculateShipping()
-        fetchPickups()
       }
     }
   }
@@ -33,9 +37,16 @@ const ShippingSimulator = () => {
   const handleCLick = (_event: any) => {
     if (postalCode.length > 0) {
       calculateShipping()
-      fetchPickups()
     }
   }
+
+  useEffect(() => {
+    fetchPickups()
+  }, [shipping])
+
+  useEffect(() => {
+    shippingFromPickupCall(pickups)
+  }, [pickups])
 
   return (
     <Fragment>
@@ -44,7 +55,10 @@ const ShippingSimulator = () => {
           <div className={`${styles.shippingSubContainer}`}>
             <ShippingCostTable shipping={shipping} shippingType="SHIPMENT" />
             <hr className={styles.divider} />
-            <ShippingCostTable shipping={pickups} shippingType="PICKUP" />
+            <ShippingCostTable
+              shipping={shippingFromPickups}
+              shippingType="PICKUP"
+            />
           </div>
         ) : (
           <div>

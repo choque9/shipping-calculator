@@ -55,14 +55,7 @@ const ShippingCostTable: React.FC<ShippingCostProps> = ({
                   <tr key={index}>
                     <td className={styles.tableFriendlyName}>{option.name}</td>
                     <td>
-                      {' '}
-                      {shippingType === 'PICKUP' ? (
-                        `${option.estimated} km`
-                      ) : (
-                        <TranslateEstimate
-                          shippingEstimate={option.estimated}
-                        />
-                      )}
+                      <TranslateEstimate shippingEstimate={option.estimated} />
                     </td>
                     <td>${option.cost}</td>
                   </tr>

@@ -39,4 +39,9 @@ interface ShippingSLA {
   shippingEstimateDate: string | null
 }
 
+interface PickUpOption {
+  name: string
+  postalCode: string
+}
+
 type GenericObject = Record<string, any>
