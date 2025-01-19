@@ -2,7 +2,6 @@
     border-radius: 8px;
     margin: 0 auto;
     overflow-y: auto;
-    max-height: 350px;
 }
 
 .shippingHeader {
@@ -21,6 +20,7 @@
 
 .tableFriendlyName {
     font-weight: bold;
+    max-width: 100px;
 }
 
 .table th,
@@ -35,4 +35,3 @@
     font-weight: bold;
     font-size: 9px;
 }
-
